@@ -2,7 +2,11 @@
 <projectDescription>
   <name>employ-rules</name>
   <comment>NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
-  <projects/>
+  <projects>
+    <project>drools-core</project>
+    <project>knowledge-api</project>
+    <project>drools-compiler</project>
+  </projects>
   <buildSpec>
     <buildCommand>
       <name>org.eclipse.jdt.core.javabuilder</name>
