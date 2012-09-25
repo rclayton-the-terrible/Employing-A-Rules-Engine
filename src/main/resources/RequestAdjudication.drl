@@ -1,0 +1,23 @@
+package com.berico.ra
+
+
+rule "Automatically guilty if Vehicle is Audi"
+
+    when
+        speedingTicketCase : SpeedingTicketCase( vehicleMake == "Audi" )
+        
+    then
+        speedingTicketCase.adjudicate(true);
+
+end
+
+rule "If 30 mph over speed limit and Honda, impossible!"
+   
+    when
+        speedingTicketCase : SpeedingTicketCase( 
+        	vehicleMake == "Honda", mphOverSpeedLimit > 30 )
+        	
+    then
+        speedingTicketCase.adjudicate(false);
+
+end

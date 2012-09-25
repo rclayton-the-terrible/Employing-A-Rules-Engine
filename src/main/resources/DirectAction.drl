@@ -1,0 +1,21 @@
+package com.berico.da
+
+global EmailService emailService;
+
+
+rule "Email Bill Lumbergh when no coversheet"
+
+    when
+    
+        tpsReport : TPSReport( hasCoverSheet == false )
+        
+    then
+    
+        emailService.email(
+        	"bill@initech.com", 
+        	"rules@initech.com",
+        	"No Coversheet!!!!!",
+        	tpsReport.getAuthor() + 
+        	" failed to supply a coversheet!");
+
+end

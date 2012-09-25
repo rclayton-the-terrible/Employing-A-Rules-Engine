@@ -1,0 +1,35 @@
+package com.berico.rc
+
+// If only it were this simple.
+function double distance(int zipcode){
+	return zipcode * 0.01;
+}
+
+rule "Local Delivery routing"
+
+    when
+        parcel : BaseParcel( 
+        	weight < 200.0, distance(destinationZipCode) < 500) 
+    then
+        insert( new LocalDeliveryParcel(parcel) );
+
+end
+
+rule "Train routing"
+
+    when
+        parcel : BaseParcel( weight >= 200.0) 
+    then
+        insert( new TrainParcel(parcel) );
+
+end
+
+rule "Air Mail routing"
+
+    when
+        parcel : BaseParcel( 
+        	weight < 200.0, distance(destinationZipCode) > 500) 
+    then
+        insert( new AirMailParcel(parcel) );
+
+end
